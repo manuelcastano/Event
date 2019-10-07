@@ -104,4 +104,25 @@ public class Competitor {
 	public void setPrevious(Competitor previous) {
 		this.previous = previous;
 	}
+	
+	@Override
+	public String toString() {
+		return id + "," + firstName + "," + lastName + "," + email
+				+ "," + gender + "," + country + "," + photo + "," + birthDay;
+	}
+	
+	public void addCompetitor(Competitor c) {
+		c.setNext(this);
+		setPrevious(c);
+	}
+	
+	public Competitor findCompetitor(String idCompetitor) {
+		if(id.compareTo(idCompetitor) != 0 && next != null) {
+			return next.findCompetitor(idCompetitor);
+		}
+		if(id.compareTo(idCompetitor) != 0) {
+			return null;
+		}
+		return this;
+	}
 }

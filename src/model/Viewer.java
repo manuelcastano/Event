@@ -1,6 +1,6 @@
 package model;
 
-public class Viewer {
+public class Viewer implements Comparable<Viewer>{
 	
 	private String id;
 	private String firstName;
@@ -103,5 +103,82 @@ public class Viewer {
 
 	public void setRight(Viewer right) {
 		this.right = right;
+	}
+	
+	public void addViewer(Viewer v) {
+		if(compareTo(v) > 0) {
+			if(left == null) {
+				left = v;
+			}
+			else {
+				left.addViewer(v);
+			}
+		}
+		else if(compareTo(v) < 0) {
+			if(right == null) {
+				right = v;
+			}
+			else {
+				right.addViewer(v);
+			}
+		}
+	}
+
+	@Override
+	public int compareTo(Viewer o) {
+		return id.compareTo(o.id);
+	}
+	
+	public int treeSize() {
+		int size = 1;
+		if(left != null) {
+			size += left.treeSize();
+		}
+		if(right != null) {
+			size += right.treeSize();
+		}
+		return size;
+	}
+	
+	public Viewer findViewer(String idViewer) {
+		if(id.compareTo(idViewer) == 0) {
+			return this;
+		}
+		else if(id.compareTo(idViewer) > 0) {
+			return left.findViewer(idViewer);
+		}
+		return right.findViewer(idViewer);
+	}
+
+	@Override
+	public String toString() {
+		return id + "," + firstName + "," + lastName + "," + email
+				+ "," + gender + "," + country + "," + photo + "," + birthDay;
+	}
+	
+	public String findCountry(String theCountry) {
+		String msg = "";
+		if(country.equals(theCountry)) {
+			msg += toString()+"\n";
+			msg += "|_____";
+			if(left != null) {
+				msg += left.findCountry(theCountry);
+			}
+			msg += "\n";
+			msg += "|_____";
+			if(right != null) {
+				msg += right.findCountry(theCountry);
+			}
+			msg += "\n";
+		}
+		else {
+			if(left != null) {
+				msg += left.findCountry(theCountry);
+			}
+			if(right != null) {
+				msg += right.findCountry(theCountry);
+			}
+		}
+		return msg;
 	}
 }
