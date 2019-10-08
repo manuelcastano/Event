@@ -26,7 +26,7 @@ public class Main {
 			}
 		}
 		theEvent = new Event(file);
-		System.out.println(theEvent.findCountryViewers("Colombia"));
+		System.out.println(theEvent.findCountryCompetitors("Colombia"));
 	}
 	
 	public static void main(String[] args) {

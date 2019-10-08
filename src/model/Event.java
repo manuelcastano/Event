@@ -67,26 +67,38 @@ public class Event {
 	}
 	
 	public Viewer findViewer(String idViewer) {
-		return firstViewer.findViewer(idViewer);
+		if(firstViewer != null) {
+			return firstViewer.findViewer(idViewer);
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public Competitor findCompetitor(String idCompetitor) {
-		return firstCompetitor.findCompetitor(idCompetitor);
+		if(firstCompetitor != null) {
+			return firstCompetitor.findCompetitor(idCompetitor);
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public String findCountryViewers(String country) {
-		return firstViewer.findCountry(country);
+		if(firstViewer != null) {
+			return firstViewer.findCountry(country);
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public String findCountryCompetitors(String country) {
-		Competitor actual = firstCompetitor;
-		String msg = "";
-		while(actual != null) {
-			if(actual.getCountry().equals(country)) {
-				msg += actual+"\n";
-			}
-			actual = actual.getNext();
+		if(firstCompetitor != null) {
+			return firstCompetitor.findCountry(country);
 		}
-		return msg;
+		else {
+			return null;
+		}
 	}
 }

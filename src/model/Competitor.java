@@ -117,12 +117,24 @@ public class Competitor {
 	}
 	
 	public Competitor findCompetitor(String idCompetitor) {
-		if(id.compareTo(idCompetitor) != 0 && next != null) {
-			return next.findCompetitor(idCompetitor);
+		Competitor c = null;
+		if(id.equals(idCompetitor)) {
+			c = this;
 		}
-		if(id.compareTo(idCompetitor) != 0) {
-			return null;
+		else if(next != null) {
+			c = next.findCompetitor(idCompetitor);
 		}
-		return this;
+		return c;
+	}
+	
+	public String findCountry(String theCountry) {
+		String msg = "";
+		if(country.equals(theCountry)) {
+			msg += this;
+		}
+		if(next != null) {
+			msg += next.findCountry(theCountry);
+		}
+		return msg;
 	}
 }

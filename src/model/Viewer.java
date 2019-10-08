@@ -129,17 +129,6 @@ public class Viewer implements Comparable<Viewer>{
 		return id.compareTo(o.id);
 	}
 	
-	public int treeSize() {
-		int size = 1;
-		if(left != null) {
-			size += left.treeSize();
-		}
-		if(right != null) {
-			size += right.treeSize();
-		}
-		return size;
-	}
-	
 	public Viewer findViewer(String idViewer) {
 		if(id.compareTo(idViewer) == 0) {
 			return this;
@@ -180,5 +169,16 @@ public class Viewer implements Comparable<Viewer>{
 			}
 		}
 		return msg;
+	}
+	
+	public int treeSize() {
+		int size = 1;
+		if(left != null) {
+			size += left.treeSize();
+		}
+		if(right != null) {
+			size += right.treeSize();
+		}
+		return size;
 	}
 }
