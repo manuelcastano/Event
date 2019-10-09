@@ -127,14 +127,22 @@ public class Competitor {
 		return c;
 	}
 	
-	public String findCountry(String theCountry) {
-		String msg = "";
-		if(country.equals(theCountry)) {
-			msg += this;
+	public String findCountry(String theCountry, String sum, Competitor c) {
+		if(c.country.equals(theCountry)) {
+			if(c.next != null) {
+				return findCountry(theCountry, sum+c.toString()+"\n", c.next);
+			}
+			else {
+				return sum+c.toString()+"\n";
+			}
 		}
-		if(next != null) {
-			msg += next.findCountry(theCountry);
+		else {
+			if(c.next != null) {
+				return findCountry(theCountry, sum, c.next);
+			}
+			else {
+				return sum;
+			}
 		}
-		return msg;
 	}
 }

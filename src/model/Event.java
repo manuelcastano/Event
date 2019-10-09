@@ -95,7 +95,7 @@ public class Event {
 	
 	public String findCountryCompetitors(String country) {
 		if(firstCompetitor != null) {
-			return firstCompetitor.findCountry(country);
+			return firstCompetitor.findCountry(country, "", firstCompetitor);
 		}
 		else {
 			return null;
