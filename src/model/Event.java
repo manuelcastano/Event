@@ -77,7 +77,7 @@ public class Event {
 	
 	public Competitor findCompetitor(String idCompetitor) {
 		if(firstCompetitor != null) {
-			return firstCompetitor.findCompetitor(idCompetitor);
+			return firstCompetitor.findCompetitor(idCompetitor, firstCompetitor);
 		}
 		else {
 			return null;
@@ -95,7 +95,7 @@ public class Event {
 	
 	public String findCountryCompetitors(String country) {
 		if(firstCompetitor != null) {
-			return firstCompetitor.findCountry(country, "", firstCompetitor);
+			return firstCompetitor.findCountry(country);
 		}
 		else {
 			return null;

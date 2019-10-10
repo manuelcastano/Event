@@ -116,17 +116,20 @@ public class Competitor {
 		setPrevious(c);
 	}
 	
-	public Competitor findCompetitor(String idCompetitor) {
-		Competitor c = null;
-		if(id.equals(idCompetitor)) {
-			c = this;
+	public Competitor findCompetitor(String idCompetitor, Competitor c) {
+		if(c == null) {
+			return c;
 		}
-		else if(next != null) {
-			c = next.findCompetitor(idCompetitor);
+		else if(c.id.equals(idCompetitor)) {
+			return c;
 		}
-		return c;
+		else{
+			return findCompetitor(idCompetitor, c.next);
+		}
 	}
 	
+	//Esto no sirve
+	//Solo era una prueba
 	public String findCountry(String theCountry, String sum, Competitor c) {
 		if(c.country.equals(theCountry)) {
 			if(c.next != null) {
@@ -135,8 +138,7 @@ public class Competitor {
 			else {
 				return sum+c.toString()+"\n";
 			}
-		}
-		else {
+		} else {
 			if(c.next != null) {
 				return findCountry(theCountry, sum, c.next);
 			}
@@ -144,5 +146,17 @@ public class Competitor {
 				return sum;
 			}
 		}
+	}
+	
+	public String findCountry(String theCountry) {
+		String msg = "";
+		Competitor actual = this;
+		while(actual != null) {
+			if(actual.country.equals(theCountry)) {
+				msg += actual.toString()+"\n";
+			}
+			actual = actual.getNext();
+		}
+		return msg;
 	}
 }

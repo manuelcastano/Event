@@ -149,36 +149,23 @@ public class Viewer implements Comparable<Viewer>{
 		String msg = "";
 		if(country.equals(theCountry)) {
 			msg += toString()+"\n";
-			msg += "|_____";
-			if(left != null) {
-				msg += left.findCountry(theCountry);
+			msg += "|_________";
+			if(left != null && left.country.equals(theCountry)) {
+				msg += left.toString();
 			}
 			msg += "\n";
-			msg += "|_____";
-			if(right != null) {
-				msg += right.findCountry(theCountry);
+			msg += "|_________";
+			if(right != null && right.country.equals(theCountry)) {
+				msg += right.toString();
 			}
 			msg += "\n";
 		}
-		else {
-			if(left != null) {
-				msg += left.findCountry(theCountry);
-			}
-			if(right != null) {
-				msg += right.findCountry(theCountry);
-			}
-		}
-		return msg;
-	}
-	
-	public int treeSize() {
-		int size = 1;
 		if(left != null) {
-			size += left.treeSize();
+			msg += left.findCountry(theCountry);
 		}
 		if(right != null) {
-			size += right.treeSize();
+			msg += right.findCountry(theCountry);
 		}
-		return size;
+		return msg;
 	}
 }
