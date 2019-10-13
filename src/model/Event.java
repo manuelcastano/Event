@@ -77,7 +77,7 @@ public class Event {
 	
 	public Competitor findCompetitor(String idCompetitor) {
 		if(firstCompetitor != null) {
-			return firstCompetitor.findCompetitor(idCompetitor, firstCompetitor);
+			return firstCompetitor.findCompetitor(idCompetitor);
 		}
 		else {
 			return null;

@@ -134,9 +134,21 @@ public class Viewer implements Comparable<Viewer>{
 			return this;
 		}
 		else if(id.compareTo(idViewer) > 0) {
-			return left.findViewer(idViewer);
+			if(left != null) {
+				return left.findViewer(idViewer);
+			}
+			else {
+				return null;
+			}
 		}
-		return right.findViewer(idViewer);
+		else {
+			if(right != null) {
+				return right.findViewer(idViewer);
+			}
+			else {
+				return null;
+			}
+		}
 	}
 
 	@Override

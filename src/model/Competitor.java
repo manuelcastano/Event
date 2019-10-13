@@ -116,16 +116,18 @@ public class Competitor {
 		setPrevious(c);
 	}
 	
-	public Competitor findCompetitor(String idCompetitor, Competitor c) {
-		if(c == null) {
-			return c;
+	public Competitor findCompetitor(String idCompetitor) {
+		Competitor c = null;
+		Competitor actual = this;
+		boolean finded = false;
+		while(actual != null && !finded) {
+			if(actual.id.equals(idCompetitor)) {
+				c = actual;
+				finded = true;
+			}
+			actual = actual.getNext();
 		}
-		else if(c.id.equals(idCompetitor)) {
-			return c;
-		}
-		else{
-			return findCompetitor(idCompetitor, c.next);
-		}
+		return c;
 	}
 	
 	//Esto no sirve
